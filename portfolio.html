@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jood Altwijry | Information Technology & iOS Developer Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#0b1120',
+                            900: '#111827',
+                            850: '#162033',
+                            800: '#1e293b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b1120;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .glass-nav {
+            background: rgba(11, 17, 32, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hero-glow {
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.16) 0%, rgba(6, 182, 212, 0.1) 35%, rgba(16, 185, 129, 0.04) 55%, rgba(11, 17, 32, 0) 75%);
+        }
+    </style>
+</head>
+<body class="bg-[#0b1120] text-slate-200 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+
+    <!-- =====================================================================
+         CUSTOMIZATION CONFIG (EDIT YOUR PERSONAL LINKS & DETAILS HERE)
+         ===================================================================== -->
+    <script>
+        const PORTFOLIO_CONFIG = {
+            fullName: "Jood Altawejri",
+            email: "sjoods2213@gmail.com", // <-- Replace with your real email
+            phone: "+966 548004895",          // <-- Replace with your phone number
+            linkedin: "https://www.linkedin.com/in/jood-saleh-94507829b", // <-- Replace with your LinkedIn URL
+            github: "https://github.com/Jood123-S",       // <-- Replace with your GitHub URL
+            location: "Riyadh, Saudi Arabia",
+            coopStatus: "Available for IT COOP Training"
+        };
+    </script>
+
+    <!-- Toast Notification Banner -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-slate-900 border border-emerald-500/40 text-slate-100 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+                <p id="toast-title" class="text-sm font-semibold text-white">Copied to clipboard</p>
+                <p id="toast-desc" class="text-xs text-slate-400">Email address ready to paste.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 inset-x-0 z-40 glass-nav border-b border-slate-800/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-cyan-500 to-emerald-500 flex items-center justify-center text-slate-950 font-mono font-bold text-sm shadow-lg shadow-cyan-500/15 group-hover:scale-105 transition-transform">
+                    JA
+                </div>
+                <span class="font-bold text-white tracking-tight text-base sm:text-lg">Jood Altwijry</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+                <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#certifications" class="hover:text-cyan-400 transition-colors">Training & Exploration</a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/20">
+                    <span>COOP Inquiry</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <button id="mobile-menu-btn" aria-label="Toggle Menu" class="md:hidden p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-5 space-y-2">
+            <a href="#projects" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-slate-800">Featured Projects</a>
+            <a href="#experience" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-slate-800">Experience & Exposure</a>
+            <a href="#certifications" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-slate-800">Training & Exploration</a>
+            <a href="#skills" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-slate-800">Technical Skills</a>
+            <a href="#contact" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-emerald-400 hover:bg-slate-800">Contact & COOP Availability</a>
+        </div>
+    </header>
+
+    <!-- =====================================================================
+         1. HERO SECTION
+         ===================================================================== -->
+    <section class="relative pt-28 pb-20 sm:pt-36 sm:pb-24 hero-glow overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <!-- Status Pill -->
+                <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-xs sm:text-sm font-medium mb-6">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span class="font-mono text-xs">Seeking IT COOP Training Opportunity • Riyadh</span>
+                </div>
+
+                <!-- Name & Headline -->
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-5">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-400">Jood Altwijry</span>
+                </h1>
+                <p class="text-lg sm:text-xl font-semibold text-slate-100 mb-4">
+                    Final-Year Information Technology Student | iOS Developer & Cybersecurity Enthusiast
+                </p>
+                <p class="text-slate-400 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
+                    Building secure software systems, intuitive SwiftUI apps, and AI-driven tools at Imam Mohammad Ibn Saud Islamic University & Apple Developer Academy.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap items-center gap-3.5">
+                    <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-2">
+                        <span>View Projects</span>
+                        <i class="fa-solid fa-layer-group text-xs"></i>
+                    </a>
+                    <a href="#contact" class="px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/15 flex items-center gap-2">
+                        <span>Contact Me</span>
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </a>
+                    <button onclick="copyEmail()" class="px-5 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white border border-slate-700/80 font-medium text-sm transition-all flex items-center gap-2.5">
+                        <i class="fa-regular fa-copy text-cyan-400"></i>
+                        <span>Copy Email</span>
+                    </button>
+                    <a id="hero-linkedin-link" href="#" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in text-base"></i>
+                    </a>
+                    <a id="hero-github-link" href="#" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all" aria-label="GitHub">
+                        <i class="fa-brands fa-github text-base"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Academic & Technical Snapshot -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-14 pt-10 border-t border-slate-800/80">
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4">
+                    <p class="font-mono text-[11px] text-slate-400 uppercase tracking-wider mb-1">University</p>
+                    <p class="text-sm sm:text-base font-bold text-white">B.S. Info Technology</p>
+                    <p class="text-xs text-cyan-400 mt-0.5">IMSIU • Final Year</p>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4">
+                    <p class="font-mono text-[11px] text-slate-400 uppercase tracking-wider mb-1">iOS Engineering</p>
+                    <p class="text-sm sm:text-base font-bold text-white">Apple Developer Academy</p>
+                    <p class="text-xs text-indigo-400 mt-0.5">PNU • 9-Month Program</p>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4">
+                    <p class="font-mono text-[11px] text-slate-400 uppercase tracking-wider mb-1">AI & Security</p>
+                    <p class="text-sm sm:text-base font-bold text-white">Tuwaiq AI & Security+</p>
+                    <p class="text-xs text-emerald-400 mt-0.5">2x AI Certified</p>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4">
+                    <p class="font-mono text-[11px] text-slate-400 uppercase tracking-wider mb-1">B2B Outreach</p>
+                    <p class="text-sm sm:text-base font-bold text-white">STAY for Business</p>
+                    <p class="text-xs text-cyan-400 mt-0.5">LEAP • Black Hat MEA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         2. FEATURED PROJECTS SECTION
+         ===================================================================== -->
+    <section id="projects" class="py-20 bg-slate-900/40 border-y border-slate-800/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div>
+                    <span class="font-mono text-cyan-400 font-semibold text-xs uppercase tracking-widest">// Portfolio Case Studies</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1.5">Featured Projects</h2>
+                    <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-xl">
+                        Select a category or click any project card to view technical details, architecture milestones, and tooling.
+                    </p>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-2" id="project-filters">
+                    <button data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition-all">
+                        All (5)
+                    </button>
+                    <button data-filter="ios" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 transition-all">
+                        iOS & Web
+                    </button>
+                    <button data-filter="security" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 transition-all">
+                        Cybersecurity & Systems
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
+
+                <!-- PROJECT 1: Voice-Guard (Graduation Project) -->
+                <article data-category="security" onclick="openProjectModal('project1')" class="project-card md:col-span-2 group cursor-pointer bg-slate-900 border border-slate-800 hover:border-amber-500/50 rounded-2xl p-6 sm:p-7 transition-all flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/35 text-amber-300 font-mono text-xs font-medium">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                                Phase 1: System Architecture & UI Complete
+                            </span>
+                            <span class="inline-flex items-center gap-2 text-xs font-mono text-indigo-300 bg-indigo-500/10 border border-indigo-500/25 px-3 py-1 rounded-lg">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                                <span>Graduation Project • Hardware Phase Upcoming</span>
+                            </span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-amber-300 transition-colors mb-2.5">
+                            Voice-Guard (Graduation Project)
+                        </h3>
+                        <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-6 max-w-4xl">
+                            Dual-authentication voice and secondary PIN security system designed for Raspberry Pi integration. Completed full system architecture, UML class diagrams, dual-code verification logic, and low/high-fidelity UI mockups ahead of the upcoming hardware implementation phase.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Raspberry Pi</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">System Architecture</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">UML</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">UI/UX Design</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Python</span>
+                        </div>
+                        <span class="text-xs text-amber-300 font-semibold group-hover:translate-x-1 transition-transform">View Architecture & Phase Details &rarr;</span>
+                    </div>
+                </article>
+
+                <!-- PROJECT 2: Mindful Focus & Offline Relief App -->
+                <article data-category="ios" onclick="openProjectModal('project2')" class="project-card group cursor-pointer bg-slate-900 border border-slate-800 hover:border-cyan-500/50 rounded-2xl p-6 sm:p-7 transition-all flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-4">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-medium">
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                                iOS App • SwiftUI
+                            </span>
+                            <span class="w-9 h-9 rounded-xl bg-slate-950 border border-slate-800 group-hover:border-cyan-500/40 group-hover:text-cyan-400 text-slate-400 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-2.5">
+                            Mindful Focus & Offline Relief App
+                        </h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Offline stress-relief and productivity iOS application combining a Pomodoro focus timer with interactive digital coloring pages and 5-minute background audio stories during break intervals.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">SwiftUI</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Xcode</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Sketch</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">SVG Workflows</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Offline Audio</span>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Case Study & Features</span>
+                            <span class="text-cyan-400 font-semibold group-hover:translate-x-1 transition-transform">Inspect &rarr;</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 3: Smart Cart Return-Window Safari Extension -->
+                <article data-category="ios" onclick="openProjectModal('project3')" class="project-card group cursor-pointer bg-slate-900 border border-slate-800 hover:border-cyan-500/50 rounded-2xl p-6 sm:p-7 transition-all flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-4">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono text-xs font-medium">
+                                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                                Safari Extension • Apple Developer Academy
+                            </span>
+                            <span class="w-9 h-9 rounded-xl bg-slate-950 border border-slate-800 group-hover:border-cyan-500/40 group-hover:text-cyan-400 text-slate-400 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-2.5">
+                            Smart Cart Return-Window Safari Extension
+                        </h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Browser extension that automatically detects and displays product return and exchange timeframes directly inside online shopping carts to improve consumer transparency.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Safari Web Extensions</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">JavaScript</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Swift</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Xcode</span>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Extension Workflow</span>
+                            <span class="text-cyan-400 font-semibold group-hover:translate-x-1 transition-transform">Inspect &rarr;</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 4: IoT Smart Building Secure Network Architecture -->
+                <article data-category="security" onclick="openProjectModal('project4')" class="project-card group cursor-pointer bg-slate-900 border border-slate-800 hover:border-emerald-500/50 rounded-2xl p-6 sm:p-7 transition-all flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-4">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-xs font-medium">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                Network Security • IT1413
+                            </span>
+                            <span class="w-9 h-9 rounded-xl bg-slate-950 border border-slate-800 group-hover:border-emerald-500/40 group-hover:text-emerald-400 text-slate-400 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors mb-2.5">
+                            IoT Smart Building Secure Network Architecture
+                        </h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Defense-in-depth enterprise network design for an IoT-enabled smart building incorporating VLAN segmentation, IEEE 802.1X, MAB, TLS 1.3, AES-256 encryption, and SIEM/IPS threat monitoring.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">VLANs</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">IEEE 802.1X</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">TLS 1.3</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">AES-256</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">SIEM/IPS</span>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Defense-in-Depth Layers</span>
+                            <span class="text-emerald-400 font-semibold group-hover:translate-x-1 transition-transform">Inspect &rarr;</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 5: Applied Cryptography & Linux Networking Labs -->
+                <article data-category="security" onclick="openProjectModal('project5')" class="project-card group cursor-pointer bg-slate-900 border border-slate-800 hover:border-emerald-500/50 rounded-2xl p-6 sm:p-7 transition-all flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-4">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-medium">
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                                Hands-On Security Labs
+                            </span>
+                            <span class="w-9 h-9 rounded-xl bg-slate-950 border border-slate-800 group-hover:border-emerald-500/40 group-hover:text-emerald-400 text-slate-400 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors mb-2.5">
+                            Applied Cryptography & Linux Networking Labs
+                        </h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Command-line cryptography, packet inspection, and network hardening exercises executed in a virtualized Ubuntu Linux environment.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Ubuntu Linux</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">OpenSSL</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">CLI</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Network Security</span>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Lab Exercises & Commands</span>
+                            <span class="text-emerald-400 font-semibold group-hover:translate-x-1 transition-transform">Inspect &rarr;</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         3. EXPERIENCE & INDUSTRY EXPOSURE SECTION
+         ===================================================================== -->
+    <section id="experience" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <span class="font-mono text-cyan-400 font-semibold text-xs uppercase tracking-widest">// Experience & Industry Exposure</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1.5">Experience & Industry Exposure</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+                    Combining collaborative iOS product engineering with direct B2B client outreach at Saudi Arabia's largest technology and industry exhibitions.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1: Apple Developer Academy -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-7 hover:border-indigo-500/40 transition-colors flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/25 text-indigo-400 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-brands fa-apple"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-indigo-300">9-Month Program</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Apple Developer Academy</h3>
+                        <p class="text-sm font-medium text-indigo-400 mt-0.5">Princess Nourah Bint Abdulrahman University (PNU)</p>
+                        <p class="font-mono text-xs text-slate-400 mt-1 mb-4">Role: iOS Developer Trainee</p>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            End-to-end iOS app design, SwiftUI development, SVG asset workflows in Sketch, and collaborative product engineering through Challenge-Based Learning (CBL).
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-6 pt-4 border-t border-slate-800/80">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">SwiftUI</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Sketch & SVGs</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">Product Engineering</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: STAY for Business (UPDATED) -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-7 hover:border-cyan-500/40 transition-colors flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/25 text-cyan-400 flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-cyan-300">B2B Outreach</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Business Development & B2B Outreach</h3>
+                        <p class="text-sm font-medium text-cyan-400 mt-0.5 mb-4">STAY for Business • Business Development</p>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Conducted B2B outreach to exhibiting companies at major Riyadh events, pitching corporate accommodation and executive stay packages for visiting teams across:
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-6 pt-4 border-t border-slate-800/80">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs font-medium text-slate-200">
+                            <i class="fa-solid fa-microchip text-emerald-400 mr-1.5"></i>LEAP
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs font-medium text-slate-200">
+                            <i class="fa-solid fa-user-secret text-indigo-400 mr-1.5"></i>Black Hat MEA
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs font-medium text-slate-200">
+                            <i class="fa-solid fa-city text-cyan-400 mr-1.5"></i>Cityscape Global
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         4. TRAINING, CERTIFICATIONS & HANDS-ON EXPLORATION SECTION
+         ===================================================================== -->
+    <section id="certifications" class="py-20 bg-slate-900/40 border-y border-slate-800/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <span class="font-mono text-emerald-400 font-semibold text-xs uppercase tracking-widest">// Continuous Learning</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1.5">Training, Certifications & Hands-On Exploration</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+                    Verified bootcamps, active security certification study, and hands-on cybersecurity lab exploration.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Item 1: Tuwaiq Academy -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-[11px] font-medium">
+                                Completed • 5-Week Intensive
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-1">Tuwaiq Academy — Foundational Artificial Intelligence Program</h3>
+                        <p class="text-xs font-medium text-emerald-400 mb-3">+ 2 Artificial Intelligence Certifications</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Completed an intensive 5-week AI bootcamp covering core machine learning concepts, data workflows, and applied AI problem-solving, alongside two verified AI certifications.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 2: CompTIA Security+ -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono text-[11px] font-medium">
+                                In Progress
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-1">CompTIA Security+</h3>
+                        <p class="text-xs font-medium text-amber-400 mb-3">Active Certification Preparation</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Actively studying network security architecture, threat detection, vulnerability management, identity access controls, and applied cryptography.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 3: KAUST Academy (UPDATED: Framed honestly as Hands-On Exploration) -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center">
+                                <i class="fa-solid fa-flask"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-mono text-[11px] font-medium">
+                                Hands-On Exploration
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-1">KAUST Academy Cybersecurity Specialization</h3>
+                        <p class="text-xs font-medium text-indigo-400 mb-3">Stage 1 Hands-On Labs Explored (SITE Platform)</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Selected for Stage 1 and explored practical cybersecurity labs and foundational exercises on the SITE Immersive Labs platform to strengthen defensive security skills.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         5. TECHNICAL SKILLS MATRIX
+         ===================================================================== -->
+    <section id="skills" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <span class="font-mono text-cyan-400 font-semibold text-xs uppercase tracking-widest">// Technical Stack</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1.5">Technical Skills Matrix</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+                    Languages, security protocols, and engineering tools used across my academic and academy projects.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Languages & Frameworks -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/40 transition-all">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Languages & Frameworks</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">Swift</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">SwiftUI</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">Python</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">JavaScript</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">HTML/CSS</span>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity & Networking -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-emerald-500/40 transition-all">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Cybersecurity & Networking</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">VLAN Segmentation</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">IEEE 802.1X</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">TLS 1.3</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">AES-256</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">SIEM/IPS</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">OpenSSL</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">Cryptography</span>
+                    </div>
+                </div>
+
+                <!-- Tools & Platforms -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-cyan-500/40 transition-all">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center">
+                            <i class="fa-solid fa-terminal"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Tools & Platforms</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">Xcode</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">Sketch</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">Ubuntu Linux</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">VirtualBox</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">Raspberry Pi</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200">Git/GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         6. CONTACT & COOP AVAILABILITY SECTION
+         ===================================================================== -->
+    <section id="contact" class="py-20 bg-slate-900/40 border-t border-slate-800/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 lg:p-12 relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 relative z-10">
+                    <!-- Left: COOP Banner & Direct Contact -->
+                    <div class="lg:col-span-6 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-xs font-medium mb-4">
+                                <i class="fa-solid fa-calendar-check"></i>
+                                <span>Available for IT COOP Training • Riyadh / Hybrid</span>
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">
+                                Let's Connect for COOP Training
+                            </h2>
+                            <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
+                                I am seeking a COOP training opportunity where I can contribute to iOS development, software engineering, or cybersecurity operations while learning from experienced tech teams.
+                            </p>
+
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-950/90 border border-slate-800">
+                                    <div class="flex items-center gap-3 min-w-0">
+                                        <div class="w-9 h-9 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center shrink-0">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </div>
+                                        <div class="truncate">
+                                            <p class="text-xs text-slate-400">Email Address</p>
+                                            <p id="display-email" class="font-mono text-xs sm:text-sm font-medium text-white truncate">jood.altwijry@example.com</p>
+                                        </div>
+                                    </div>
+                                    <button onclick="copyEmail()" class="ml-3 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 shrink-0 transition-colors">
+                                        Copy
+                                    </button>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <a id="contact-linkedin-link" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/90 border border-slate-800 hover:border-indigo-500/40 transition-colors">
+                                        <div class="w-9 h-9 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0">
+                                            <i class="fa-brands fa-linkedin-in"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-slate-400">LinkedIn</p>
+                                            <p class="text-sm font-medium text-white">Jood Altwijry</p>
+                                        </div>
+                                    </a>
+
+                                    <a id="contact-github-link" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/90 border border-slate-800 hover:border-emerald-500/40 transition-colors">
+                                        <div class="w-9 h-9 rounded-xl bg-slate-800 text-slate-200 flex items-center justify-center shrink-0">
+                                            <i class="fa-brands fa-github"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-slate-400">GitHub</p>
+                                            <p class="text-sm font-medium text-white">Code & Labs</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Quick Message Form -->
+                    <div class="lg:col-span-6">
+                        <form id="contact-form" class="bg-slate-950/90 border border-slate-800 rounded-2xl p-6 space-y-4">
+                            <h3 class="text-lg font-bold text-white">Send a Quick Message</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="sender-name" class="block text-xs font-medium text-slate-400 mb-1.5">Your Name / Company</label>
+                                    <input type="text" id="sender-name" required placeholder="e.g., Jari Solutions HR" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500">
+                                </div>
+                                <div>
+                                    <label for="sender-email" class="block text-xs font-medium text-slate-400 mb-1.5">Work Email</label>
+                                    <input type="email" id="sender-email" required placeholder="name@company.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="inquiry-type" class="block text-xs font-medium text-slate-400 mb-1.5">Topic</label>
+                                <select id="inquiry-type" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white focus:outline-none focus:border-cyan-500">
+                                    <option value="IT COOP Training Opportunity">IT COOP Training Opportunity</option>
+                                    <option value="Request Full CV & Academic Transcript">Request Full CV & Academic Documents</option>
+                                    <option value="Project Collaboration">Project / Technical Collaboration</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="sender-message" class="block text-xs font-medium text-slate-400 mb-1.5">Message</label>
+                                <textarea id="sender-message" rows="3" required placeholder="Hello Jood, we'd love to discuss a COOP opportunity with our team..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3 px-5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/15 flex items-center justify-center gap-2">
+                                <span>Compose Email Inquiry</span>
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; <span id="current-year"></span> Jood Altwijry. Information Technology Portfolio — Riyadh, Saudi Arabia.</p>
+            <p class="font-mono text-slate-400">IMSIU • Apple Developer Academy</p>
+        </div>
+    </footer>
+
+    <!-- =====================================================================
+         INTERACTIVE PROJECT DETAIL MODAL
+         ===================================================================== -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+        <div class="bg-slate-900 border border-slate-700/80 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 sm:p-8 relative">
+            <button onclick="closeProjectModal()" aria-label="Close modal" class="absolute top-5 right-5 w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         JAVASCRIPT LOGIC
+         ===================================================================== -->
+    <script>
+        const PROJECT_DETAILS = {
+            project1: {
+                badge: "Phase 1: System Architecture & UI Complete • Hardware Upcoming",
+                badgeClass: "bg-amber-500/15 border-amber-500/35 text-amber-300",
+                title: "Voice-Guard (Graduation Project)",
+                subtitle: "Dual-Authentication Security System • Imam Mohammad Ibn Saud Islamic University",
+                overview: "Dual-authentication voice and secondary PIN security system designed for Raspberry Pi integration. Completed full system architecture, UML class diagrams, dual-code verification logic, and low/high-fidelity UI mockups.",
+                highlights: [
+                    "Dual-Code Security Logic: Architected multi-step authentication combining voice verification with a secondary PIN challenge to prevent unauthorized access.",
+                    "System Architecture & UML Modeling: Produced detailed UML class diagrams, use case specifications, and component interaction flows for Raspberry Pi deployment.",
+                    "Low & High-Fidelity UI Mockups: Designed complete user interface screens for enrollment, authentication prompts, and security status feedback."
+                ],
+                roadmapNote: "Status Update: Phase 1 (System Architecture, UML Diagrams & UI/UX Mockups) is complete. Hardware integration on Raspberry Pi is scheduled as the upcoming phase.",
+                tags: ["Raspberry Pi", "System Architecture", "UML", "UI/UX Design", "Python"]
+            },
+            project2: {
+                badge: "iOS App • SwiftUI",
+                badgeClass: "bg-indigo-500/15 border-indigo-500/30 text-indigo-300",
+                title: "Mindful Focus & Offline Relief App",
+                subtitle: "Apple Developer Academy • Offline-First Productivity & Wellness",
+                overview: "Offline stress-relief and productivity iOS application combining a Pomodoro focus timer with interactive digital coloring pages and 5-minute background audio stories during break intervals.",
+                highlights: [
+                    "Pomodoro Focus Engine: Structured work and rest timer sessions built natively with SwiftUI state management.",
+                    "Interactive Break Activities: Integrated vector-based digital coloring canvases and 5-minute calming background audio stories to help users unwind between focus blocks.",
+                    "100% Offline Experience: All SVG illustrations and audio stories are bundled locally so the app works reliably without internet access."
+                ],
+                roadmapNote: "Built using SwiftUI in Xcode with custom vector assets crafted in Sketch.",
+                tags: ["SwiftUI", "Xcode", "Sketch", "SVG Workflows", "Offline Audio"]
+            },
+            project3: {
+                badge: "Safari Extension • Apple Developer Academy",
+                badgeClass: "bg-cyan-500/15 border-cyan-500/30 text-cyan-300",
+                title: "Smart Cart Return-Window Safari Extension",
+                subtitle: "Browser Extension • E-Commerce Return Policy Transparency",
+                overview: "Browser extension that automatically detects and displays product return and exchange timeframes directly inside online shopping carts to improve consumer transparency.",
+                highlights: [
+                    "Real-Time Cart Detection: JavaScript content scripts inspect active shopping cart pages and identify retailer and product context automatically.",
+                    "Clear Timeframe Popover: Displays concise return and exchange windows right at checkout so shoppers don't have to hunt through policy footers.",
+                    "Native Safari Integration: Packaged as a Safari Web Extension in Xcode with Swift host app support."
+                ],
+                roadmapNote: "Developed and tested at the Apple Developer Academy.",
+                tags: ["Safari Web Extensions", "JavaScript", "Swift", "Xcode"]
+            },
+            project4: {
+                badge: "Network Security • IT1413",
+                badgeClass: "bg-emerald-500/15 border-emerald-500/30 text-emerald-300",
+                title: "IoT Smart Building Secure Network Architecture",
+                subtitle: "Defense-in-Depth Enterprise Network Design",
+                overview: "Defense-in-depth enterprise network design for an IoT-enabled smart building incorporating VLAN segmentation, IEEE 802.1X, MAB, TLS 1.3, AES-256 encryption, and SIEM/IPS threat monitoring.",
+                highlights: [
+                    "VLAN Segmentation: Isolated building IoT sensors, management controllers, and corporate user traffic into separate VLANs with strict access control rules.",
+                    "Zero-Trust Port Access: Enforced IEEE 802.1X authentication for enterprise endpoints and MAC Authentication Bypass (MAB) for constrained IoT devices.",
+                    "Encryption & Monitoring: Applied TLS 1.3 and AES-256 encryption alongside centralized SIEM log correlation and IPS intrusion prevention."
+                ],
+                roadmapNote: "Complete network security architecture and control matrix documentation.",
+                tags: ["VLANs", "IEEE 802.1X", "TLS 1.3", "AES-256", "SIEM/IPS"]
+            },
+            project5: {
+                badge: "Hands-On Security Labs",
+                badgeClass: "bg-indigo-500/15 border-indigo-500/30 text-indigo-300",
+                title: "Applied Cryptography & Linux Networking Labs",
+                subtitle: "Virtualized Ubuntu Linux Security & CLI Exercises",
+                overview: "Command-line cryptography, packet inspection, and network hardening exercises executed in a virtualized Ubuntu Linux environment.",
+                highlights: [
+                    "Applied Cryptography via OpenSSL: Practiced symmetric/asymmetric encryption, hashing, digital signatures, and certificate verification from the Linux CLI.",
+                    "Packet Inspection & Traffic Analysis: Captured and analyzed network packets to verify protocol behavior and detect anomalies.",
+                    "Linux Network Hardening: Configured firewall rules, secure permissions, and service restrictions inside virtualized Ubuntu environments."
+                ],
+                roadmapNote: "Executed in VirtualBox Ubuntu Linux lab environments.",
+                tags: ["Ubuntu Linux", "OpenSSL", "CLI", "Network Security"]
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("current-year").textContent = new Date().getFullYear();
+            document.getElementById("display-email").textContent = PORTFOLIO_CONFIG.email;
+            
+            [document.getElementById("hero-linkedin-link"), document.getElementById("contact-linkedin-link")].forEach(el => {
+                if (el) el.href = PORTFOLIO_CONFIG.linkedin;
+            });
+
+            [document.getElementById("hero-github-link"), document.getElementById("contact-github-link")].forEach(el => {
+                if (el) el.href = PORTFOLIO_CONFIG.github;
+            });
+        });
+
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+        mobileMenu.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+        });
+
+        // Toast Notification Helper
+        let toastTimeout;
+        function showToast(title, desc) {
+            const toast = document.getElementById("toast");
+            document.getElementById("toast-title").textContent = title;
+            document.getElementById("toast-desc").textContent = desc;
+            toast.classList.remove("translate-y-24", "opacity-0");
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add("translate-y-24", "opacity-0");
+            }, 3200);
+        }
+
+        // Copy Email to Clipboard
+        function copyEmail() {
+            const email = PORTFOLIO_CONFIG.email;
+            const tempInput = document.createElement("input");
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand("copy");
+                showToast("Email Copied!", email + " copied to clipboard.");
+            } catch (err) {
+                showToast("Email Address", email);
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // Project Category Filtering
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const projectCards = document.querySelectorAll(".project-card");
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const filter = btn.getAttribute("data-filter");
+
+                filterButtons.forEach(b => {
+                    b.classList.remove("bg-cyan-500", "text-slate-950");
+                    b.classList.add("bg-slate-900", "text-slate-300", "border", "border-slate-800");
+                });
+                btn.classList.remove("bg-slate-900", "text-slate-300", "border", "border-slate-800");
+                btn.classList.add("bg-cyan-500", "text-slate-950");
+
+                projectCards.forEach(card => {
+                    const category = card.getAttribute("data-category");
+                    if (filter === "all" || category === filter) {
+                        card.classList.remove("hidden");
+                    } else {
+                        card.classList.add("hidden");
+                    }
+                });
+            });
+        });
+
+        // Project Modal Handlers
+        const modal = document.getElementById("project-modal");
+        const modalBody = document.getElementById("modal-body");
+
+        function openProjectModal(projectId) {
+            const data = PROJECT_DETAILS[projectId];
+            if (!data) return;
+
+            const highlightsHTML = data.highlights.map(item => `
+                <li class="flex items-start gap-3 text-sm text-slate-300">
+                    <i class="fa-solid fa-circle-check text-cyan-400 mt-1 shrink-0"></i>
+                    <span>${item}</span>
+                </li>
+            `).join("");
+
+            const tagsHTML = data.tags.map(tag => `
+                <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">${tag}</span>
+            `).join("");
+
+            modalBody.innerHTML = `
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border font-mono text-xs font-medium mb-4 ${data.badgeClass}">
+                    ${data.badge}
+                </span>
+                <h3 class="text-2xl font-bold text-white mb-1 pr-8">${data.title}</h3>
+                <p class="text-xs sm:text-sm text-cyan-400 font-medium mb-5">${data.subtitle}</p>
+                
+                <div class="space-y-5">
+                    <div>
+                        <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Overview</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">${data.overview}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">Key Technical Highlights</h4>
+                        <ul class="space-y-2.5 bg-slate-950/70 border border-slate-800/80 rounded-2xl p-4">
+                            ${highlightsHTML}
+                        </ul>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-xs text-cyan-200 flex items-start gap-2.5">
+                        <i class="fa-solid fa-compass text-cyan-400 mt-0.5"></i>
+                        <span>${data.roadmapNote}</span>
+                    </div>
+
+                    <div>
+                        <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Tech Stack</h4>
+                        <div class="flex flex-wrap gap-2">${tagsHTML}</div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeProjectModal() {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            document.body.style.overflow = "";
+        }
+
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeProjectModal();
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+                closeProjectModal();
+            }
+        });
+
+        // Contact Form Handler
+        document.getElementById("contact-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("sender-name").value.trim();
+            const senderEmail = document.getElementById("sender-email").value.trim();
+            const topic = document.getElementById("inquiry-type").value;
+            const message = document.getElementById("sender-message").value.trim();
+
+            const subject = encodeURIComponent(`[Portfolio] ${topic} — ${name}`);
+            const body = encodeURIComponent(`From: ${name} (${senderEmail})\nTopic: ${topic}\n\n${message}`);
+            
+            showToast("Opening Email Client", "Your message is pre-filled and ready to send.");
+            window.location.href = `mailto:${PORTFOLIO_CONFIG.email}?subject=${subject}&body=${body}`;
+        });
+    </script>
+</body>
+</html>
